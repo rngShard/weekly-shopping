@@ -1,10 +1,14 @@
 <mat-horizontal-stepper #stepper>
-  <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Fill out your name</ng-template>
-      <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+  <mat-step [stepControl]="dinnersFormGroup" errorMessage="Name is required.">
+    <ng-template matStepLabel> Abendessen </ng-template>
+    <form class="dinners-form" [formGroup]="dinnersFormGroup">
+      <mat-form-field *ngFor="let day of WEEKDAYS" appearance="fill">
+        <mat-label> {{day}} </mat-label>
+        <mat-select>
+          <mat-option *ngFor="let dinner of dinners" [value]="dinner.id" required>
+            {{dinner.name}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
       <div>
         <p>Go to a different step to see the error state</p>
@@ -13,8 +17,8 @@
     </form>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
+    <ng-template matStepLabel> Sonstiges </ng-template>
+    <!-- <form [formGroup]="secondFormGroup">
       <mat-form-field>
         <mat-label>Address</mat-label>
         <input matInput placeholder="Ex. 1 Main St, New York, NY" formControlName="secondCtrl"
@@ -25,7 +29,7 @@
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
       </div>
-    </form>
+    </form> -->
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
