@@ -23,15 +23,21 @@ export class ProgressionComponent implements OnInit {
 
   dinnersFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  matcher = new MyErrorStateMatcher();
 
   constructor(
     private dinnerService: DinnerService,
     private _formBuilder: FormBuilder
   ) {
     this.dinners = [];
+
     this.dinnersFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      Montag: [null, Validators.required],    // [default value], [validation]
+      Dienstag: [null, Validators.required],
+      Mittwoch: [null, Validators.required],
+      Donnerstag: [null, Validators.required],
+      Freitag: [null, Validators.required],
+      Samstag: [null, Validators.required],
+      Sonntag: [null, Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
@@ -41,12 +47,8 @@ export class ProgressionComponent implements OnInit {
   ngOnInit(): void {
     this.dinners = this.dinnerService.getDinners();
   }
-}
 
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  info() {
+    console.log(this.dinnersFormGroup.value);
   }
 }

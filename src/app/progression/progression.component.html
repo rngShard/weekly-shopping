@@ -1,18 +1,18 @@
 <mat-horizontal-stepper #stepper>
-  <mat-step [stepControl]="dinnersFormGroup" errorMessage="Name is required.">
+  <mat-step [stepControl]="dinnersFormGroup" errorMessage="Woche vervollständigen!">
     <ng-template matStepLabel> Abendessen </ng-template>
     <form class="dinners-form" [formGroup]="dinnersFormGroup">
       <mat-form-field *ngFor="let day of WEEKDAYS" appearance="fill">
         <mat-label> {{day}} </mat-label>
-        <mat-select>
+        <mat-select [formControlName]="day">
           <mat-option *ngFor="let dinner of dinners" [value]="dinner.id" required>
             {{dinner.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <div>
-        <p>Go to a different step to see the error state</p>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext> Next &gt;&gt; </button>
+        <!-- <button mat-button (click)="info()">info</button> -->
       </div>
     </form>
   </mat-step>
@@ -26,8 +26,8 @@
       </mat-form-field>
       <div>
         <p>Go to a different step to see the error state</p>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious> &lt;&lt; Prev </button>
+        <button mat-button matStepperNext> Next &gt;&gt; </button>
       </div>
     </form> -->
   </mat-step>
