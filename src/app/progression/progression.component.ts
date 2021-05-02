@@ -4,7 +4,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 import { DinnerService } from './dinner/dinner.service';
-import { Dinner } from './dinner/dinner';
+import { Category, Dinner } from './dinner/dinner';
 
 enum Weekdays {
 }
@@ -47,6 +47,10 @@ export class ProgressionComponent implements OnInit {
   ngOnInit(): void {
     this.dinners = this.dinnerService.getDinners();
   }
+
+  // toggleCategory(category: Category) {
+    
+  // }
 
   addToMisc($event: any) {
     this.miscFoods.push($event.target.value);

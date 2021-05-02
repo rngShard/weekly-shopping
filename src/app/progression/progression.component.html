@@ -1,6 +1,11 @@
 <mat-horizontal-stepper #stepper (keydown.enter)="$event.preventDefault()">
   <mat-step [stepControl]="dinnersFormGroup" errorMessage="Woche vervollständigen!">
     <ng-template matStepLabel> Abendessen </ng-template>
+    <section>
+      <!-- <mat-checkbox [(ngModel)]="" (click)="toggleCategory(0)" [checked]="true"> Süß </mat-checkbox>
+      <mat-checkbox (click)="toggleCategory(1)" [checked]="true"> Fleisch </mat-checkbox>
+      <mat-checkbox (click)="toggleCategory(2)" [checked]="true"> Fisch </mat-checkbox> -->
+    </section>
     <form class="dinners-form" [formGroup]="dinnersFormGroup">
       <mat-form-field *ngFor="let day of WEEKDAYS" appearance="fill">
         <mat-label> {{day}} </mat-label>
