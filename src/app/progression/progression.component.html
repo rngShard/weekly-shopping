@@ -1,4 +1,4 @@
-<mat-horizontal-stepper #stepper>
+<mat-horizontal-stepper #stepper (keydown.enter)="$event.preventDefault()">
   <mat-step [stepControl]="dinnersFormGroup" errorMessage="Woche vervollständigen!">
     <ng-template matStepLabel> Abendessen </ng-template>
     <form class="dinners-form" [formGroup]="dinnersFormGroup">
@@ -11,32 +11,41 @@
         </mat-select>
       </mat-form-field>
       <div>
-        <button mat-button matStepperNext> Next &gt;&gt; </button>
+        <button mat-raised-button matStepperNext> Next &gt;&gt; </button>
         <!-- <button mat-button (click)="info()">info</button> -->
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
+  <mat-step [stepControl]="miscFormGroup">
     <ng-template matStepLabel> Sonstiges </ng-template>
-    <!-- <form [formGroup]="secondFormGroup">
-      <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput placeholder="Ex. 1 Main St, New York, NY" formControlName="secondCtrl"
-               required>
+    <form [formGroup]="miscFormGroup">
+      <mat-form-field appearance="fill">
+        <mat-label> Weiteres hinzufügen </mat-label>
+        <input matInput placeholder="Apfel x3, Bananen x5, Brot, Klopapier, ..." autocomplete="off" (keyup.enter)="addToMisc($event)">
       </mat-form-field>
+      <mat-list role="list">
+        <mat-list-item *ngFor="let miscFood of miscFoods" role="listitem">
+          <mat-icon (click)="deleteFromMisc(miscFood)">delete</mat-icon>
+          {{miscFood}}
+        </mat-list-item>
+      </mat-list>
       <div>
-        <p>Go to a different step to see the error state</p>
-        <button mat-button matStepperPrevious> &lt;&lt; Prev </button>
-        <button mat-button matStepperNext> Next &gt;&gt; </button>
+        <button mat-raised-button matStepperPrevious> &lt;&lt; Prev </button>
+        <button mat-raised-button matStepperNext> Next &gt;&gt; </button>
       </div>
-    </form> -->
+    </form>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
+    <ng-template matStepLabel> Review </ng-template>
+    <p>
+      {{ this.dinnersFormGroup.value | json }}
+    </p>
+    <p>
+      {{ this.miscFoods | json }}
+    </p>
     <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-raised-button matStepperPrevious>Back</button>
+      <button mat-raised-button (click)="stepper.reset()">Reset</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

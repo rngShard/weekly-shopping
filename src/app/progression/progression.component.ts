@@ -22,13 +22,15 @@ export class ProgressionComponent implements OnInit {
   dinners: Dinner[];
 
   dinnersFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  miscFormGroup: FormGroup;
+  miscFoods: string[];
 
   constructor(
     private dinnerService: DinnerService,
     private _formBuilder: FormBuilder
   ) {
     this.dinners = [];
+    this.miscFoods = [];
 
     this.dinnersFormGroup = this._formBuilder.group({
       Montag: [null, Validators.required],    // [default value], [validation]
@@ -39,16 +41,18 @@ export class ProgressionComponent implements OnInit {
       Samstag: [null, Validators.required],
       Sonntag: [null, Validators.required]
     });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
+    this.miscFormGroup = this._formBuilder.group({});
   }
 
   ngOnInit(): void {
     this.dinners = this.dinnerService.getDinners();
   }
 
-  info() {
-    console.log(this.dinnersFormGroup.value);
+  addToMisc($event: any) {
+    this.miscFoods.push($event.target.value);
+    $event.target.value = "";
+  }
+  deleteFromMisc(miscFood: string) {
+    this.miscFoods = this.miscFoods.filter(x => x !== miscFood)
   }
 }
