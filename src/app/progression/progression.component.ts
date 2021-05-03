@@ -4,17 +4,14 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { DinnerService } from './dinner/dinner.service';
 import { Category, Dinner } from './dinner/dinner';
 
-enum Weekdays {
-  monday = "Montag",
-  tuesday = "Dienstag",
-  wednesday = "Mittwoch",
-  thrusday = "Donnerstag",
-  friday = "Freitag",
-  saturday = "Samstag",
-  sunday = "Sonntag"
-}
-function enumKeys<O extends object, K extends keyof O = keyof O>(obj: O): K[] {
-  return Object.keys(obj).filter(k => Number.isNaN(+k)) as K[];
+export enum Weekdays {
+  "Montag",
+  "Dienstag",
+  "Mittwoch",
+  "Donnerstag",
+  "Freitag",
+  "Samstag",
+  "Sonntag"
 }
 
 @Component({
@@ -23,8 +20,10 @@ function enumKeys<O extends object, K extends keyof O = keyof O>(obj: O): K[] {
   styleUrls: ['./progression.component.scss']
 })
 export class ProgressionComponent implements OnInit {
-  WEEKDAYS = [];
-  dinners: Dinner[];
+  public Weekdays = Weekdays
+  availableDinners: Dinner[] = [];
+  
+  mondayDinner: Dinner[] = [];
   miscFoods: string[];
 
   todo = [
@@ -46,15 +45,15 @@ export class ProgressionComponent implements OnInit {
     private dinnerService: DinnerService
   ) {
     // for (const val of enumKeys(Weekdays)) { console.log(Weekdays[val]) }
-    this.dinners = [];
+    this.availableDinners = [];
     this.miscFoods = [];
   }
 
   ngOnInit(): void {
-    this.dinners = this.dinnerService.getDinners();
+    this.availableDinners = this.dinnerService.getDinners();
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<Dinner[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -76,5 +75,4 @@ export class ProgressionComponent implements OnInit {
   deleteFromMisc(miscFood: string) {
     this.miscFoods = this.miscFoods.filter(x => x !== miscFood)
   }
-
 }

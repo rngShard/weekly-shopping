@@ -16,6 +16,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatListModule,
     MatIconModule,
     MatCheckboxModule,
-    DragDropModule
+    DragDropModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

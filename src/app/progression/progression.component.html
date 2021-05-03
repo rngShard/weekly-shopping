@@ -1,40 +1,52 @@
 <mat-horizontal-stepper #stepper (keydown.enter)="$event.preventDefault()">
   <mat-step>
     <ng-template matStepLabel> Abendessen </ng-template>
+
     <section>
       <!-- <mat-checkbox [(ngModel)]="" (click)="toggleCategory(0)" [checked]="true"> Süß </mat-checkbox>
       <mat-checkbox (click)="toggleCategory(1)" [checked]="true"> Fleisch </mat-checkbox>
       <mat-checkbox (click)="toggleCategory(2)" [checked]="true"> Fisch </mat-checkbox> -->
     </section>
-    <div class="example-container">
-      <h2>To do</h2>
-      <div
-        cdkDropList
-        #todoList="cdkDropList"
-        [cdkDropListData]="todo"
-        [cdkDropListConnectedTo]="[doneList]"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
-      </div>
+    <div class="grid-container">
+      <mat-grid-list cols="2" rowHeight="100px">
+        <mat-grid-tile colspan="1" rowspan="7">
+          <div
+            cdkDropList
+            #availDinnersDropList="cdkDropList"
+            [cdkDropListData]="availableDinners"
+            [cdkDropListConnectedTo]="[doneList]"
+            class="item-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="item-box" *ngFor="let dinner of availableDinners" cdkDrag>
+              {{ dinner.name }}
+            </div>
+          </div>
+        </mat-grid-tile>
+        <div *ngFor="let day of Weekdays | keyvalue">
+          <mat-grid-tile *ngIf="!+day.value && day.value !== 0" colspan="1" rowspan="1">
+            {{day.value}}
+          </mat-grid-tile>
+        </div>
+      </mat-grid-list>
     </div>
-    <div class="example-container">
-      <h2>Done</h2>    
-      <div
-        cdkDropList
-        #doneList="cdkDropList"
-        [cdkDropListData]="done"
-        [cdkDropListConnectedTo]="[todoList]"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
-      </div>
+
+    <div
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="mondayDinner"
+    [cdkDropListConnectedTo]="[availDinnersDropList]"
+    class="item-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="item-box" *ngFor="let dinner of mondayDinner" cdkDrag>
+      {{ dinner.name }}
     </div>
-    <button mat-raised-button matStepperNext> Next &gt;&gt; </button>
-    <!-- <button mat-button (click)="info()">info</button> -->
+  </div>
+  
+    <!-- <button mat-raised-button matStepperNext> Next &gt;&gt; </button> -->
   </mat-step>
   <mat-step>
     <ng-template matStepLabel> Sonstiges </ng-template>
+
     <form>
       <mat-form-field appearance="fill">
         <mat-label> Weiteres hinzufügen </mat-label>
@@ -46,23 +58,22 @@
           {{miscFood}}
         </mat-list-item>
       </mat-list>
-      <div>
-        <button mat-raised-button matStepperPrevious> &lt;&lt; Prev </button>
-        <button mat-raised-button matStepperNext> Next &gt;&gt; </button>
-      </div>
     </form>
+
+    <!-- <button mat-raised-button matStepperPrevious> &lt;&lt; Prev </button>
+    <button mat-raised-button matStepperNext> Next &gt;&gt; </button> -->
   </mat-step>
   <mat-step>
     <ng-template matStepLabel> Review </ng-template>
+
     <!-- <p>
       {{ this.dinnersFormGroup.value | json }}
     </p> -->
     <p>
       {{ this.miscFoods | json }}
     </p>
-    <div>
-      <button mat-raised-button matStepperPrevious>Back</button>
-      <button mat-raised-button (click)="stepper.reset()">Reset</button>
-    </div>
+    
+    <!-- <button mat-raised-button matStepperPrevious>Back</button>
+    <button mat-raised-button (click)="stepper.reset()">Reset</button> -->
   </mat-step>
 </mat-horizontal-stepper>
