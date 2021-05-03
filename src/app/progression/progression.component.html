@@ -12,35 +12,67 @@
         <mat-grid-tile colspan="1" rowspan="7">
           <div
             cdkDropList
-            #availDinnersDropList="cdkDropList"
-            [cdkDropListData]="availableDinners"
-            [cdkDropListConnectedTo]="[doneList]"
+            #availDinnersDL="cdkDropList"
+            [cdkDropListData]="availDinners"
+            [cdkDropListConnectedTo]="[DL0, DL1, DL2, DL3, DL4, DL5, DL6]"
             class="item-list"
             (cdkDropListDropped)="drop($event)">
-            <div class="item-box" *ngFor="let dinner of availableDinners" cdkDrag>
+            <div class="item-box" *ngFor="let dinner of availDinners" cdkDrag>
               {{ dinner.name }}
             </div>
           </div>
         </mat-grid-tile>
-        <div *ngFor="let day of Weekdays | keyvalue">
-          <mat-grid-tile *ngIf="!+day.value && day.value !== 0" colspan="1" rowspan="1">
-            {{day.value}}
-          </mat-grid-tile>
-        </div>
+        <mat-grid-tile colspan="1" rowspan="1">
+          {{Weekdays[0]}}
+          <div cdkDropList #DL0="cdkDropList" [cdkDropListData]="selDinners[0]" [cdkDropListConnectedTo]="[availDinnersDL]" class="item-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="item-box" *ngFor="let dinner of selDinners[0]" cdkDrag> {{ dinner.name }} </div>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1">
+          {{Weekdays[1]}}
+          <div cdkDropList #DL1="cdkDropList" [cdkDropListData]="selDinners[1]" [cdkDropListConnectedTo]="[availDinnersDL]" class="item-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="item-box" *ngFor="let dinner of selDinners[1]" cdkDrag> {{ dinner.name }} </div>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1">
+          {{Weekdays[2]}}
+          <div cdkDropList #DL2="cdkDropList" [cdkDropListData]="selDinners[2]" [cdkDropListConnectedTo]="[availDinnersDL]" class="item-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="item-box" *ngFor="let dinner of selDinners[2]" cdkDrag> {{ dinner.name }} </div>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1">
+          {{Weekdays[3]}}
+          <div cdkDropList #DL3="cdkDropList" [cdkDropListData]="selDinners[3]" [cdkDropListConnectedTo]="[availDinnersDL]" class="item-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="item-box" *ngFor="let dinner of selDinners[3]" cdkDrag> {{ dinner.name }} </div>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1">
+          {{Weekdays[4]}}
+          <div cdkDropList #DL4="cdkDropList" [cdkDropListData]="selDinners[4]" [cdkDropListConnectedTo]="[availDinnersDL]" class="item-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="item-box" *ngFor="let dinner of selDinners[4]" cdkDrag> {{ dinner.name }} </div>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1">
+          {{Weekdays[5]}}
+          <div cdkDropList #DL5="cdkDropList" [cdkDropListData]="selDinners[5]" [cdkDropListConnectedTo]="[availDinnersDL]" class="item-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="item-box" *ngFor="let dinner of selDinners[5]" cdkDrag> {{ dinner.name }} </div>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1">
+          {{Weekdays[6]}}
+          <div cdkDropList #DL6="cdkDropList" [cdkDropListData]="selDinners[6]" [cdkDropListConnectedTo]="[availDinnersDL]" class="item-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="item-box" *ngFor="let dinner of selDinners[6]" cdkDrag> {{ dinner.name }} </div>
+          </div>
+        </mat-grid-tile>
       </mat-grid-list>
     </div>
-
-    <div
-    cdkDropList
-    #doneList="cdkDropList"
-    [cdkDropListData]="mondayDinner"
-    [cdkDropListConnectedTo]="[availDinnersDropList]"
-    class="item-list"
-    (cdkDropListDropped)="drop($event)">
-    <div class="item-box" *ngFor="let dinner of mondayDinner" cdkDrag>
-      {{ dinner.name }}
-    </div>
-  </div>
   
     <!-- <button mat-raised-button matStepperNext> Next &gt;&gt; </button> -->
   </mat-step>

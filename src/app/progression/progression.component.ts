@@ -21,36 +21,22 @@ export enum Weekdays {
 })
 export class ProgressionComponent implements OnInit {
   public Weekdays = Weekdays
-  availableDinners: Dinner[] = [];
+  availDinners: Dinner[];
   
-  mondayDinner: Dinner[] = [];
+  selDinners: Dinner[][];
   miscFoods: string[];
-
-  todo = [
-    'Get to work',
-    'Pick up groceries',
-    'Go home',
-    'Fall asleep'
-  ];
-
-  done = [
-    'Get up',
-    'Brush teeth',
-    'Take a shower',
-    'Check e-mail',
-    'Walk dog'
-  ];
 
   constructor(
     private dinnerService: DinnerService
   ) {
     // for (const val of enumKeys(Weekdays)) { console.log(Weekdays[val]) }
-    this.availableDinners = [];
+    this.availDinners = [];
+    this.selDinners = [ [], [], [], [], [], [], [] ];
     this.miscFoods = [];
   }
 
   ngOnInit(): void {
-    this.availableDinners = this.dinnerService.getDinners();
+    this.availDinners = this.dinnerService.getDinners();
   }
 
   drop(event: CdkDragDrop<Dinner[]>) {
