@@ -1,52 +1,69 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 import { DinnerService } from './dinner/dinner.service';
 import { Category, Dinner } from './dinner/dinner';
 
 enum Weekdays {
+  monday = "Montag",
+  tuesday = "Dienstag",
+  wednesday = "Mittwoch",
+  thrusday = "Donnerstag",
+  friday = "Freitag",
+  saturday = "Samstag",
+  sunday = "Sonntag"
+}
+function enumKeys<O extends object, K extends keyof O = keyof O>(obj: O): K[] {
+  return Object.keys(obj).filter(k => Number.isNaN(+k)) as K[];
 }
 
 @Component({
   selector: 'app-progression',
   templateUrl: './progression.component.html',
-  styleUrls: ['./progression.component.scss'],
-  providers: [{
-    provide: STEPPER_GLOBAL_OPTIONS, useValue: {showError: true}
-  }]
+  styleUrls: ['./progression.component.scss']
 })
 export class ProgressionComponent implements OnInit {
-  WEEKDAYS = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"];
+  WEEKDAYS = [];
   dinners: Dinner[];
-
-  dinnersFormGroup: FormGroup;
-  miscFormGroup: FormGroup;
   miscFoods: string[];
 
+  todo = [
+    'Get to work',
+    'Pick up groceries',
+    'Go home',
+    'Fall asleep'
+  ];
+
+  done = [
+    'Get up',
+    'Brush teeth',
+    'Take a shower',
+    'Check e-mail',
+    'Walk dog'
+  ];
+
   constructor(
-    private dinnerService: DinnerService,
-    private _formBuilder: FormBuilder
+    private dinnerService: DinnerService
   ) {
+    // for (const val of enumKeys(Weekdays)) { console.log(Weekdays[val]) }
     this.dinners = [];
     this.miscFoods = [];
-
-    this.dinnersFormGroup = this._formBuilder.group({
-      Montag: [null, Validators.required],    // [default value], [validation]
-      Dienstag: [null, Validators.required],
-      Mittwoch: [null, Validators.required],
-      Donnerstag: [null, Validators.required],
-      Freitag: [null, Validators.required],
-      Samstag: [null, Validators.required],
-      Sonntag: [null, Validators.required]
-    });
-    this.miscFormGroup = this._formBuilder.group({});
   }
 
   ngOnInit(): void {
     this.dinners = this.dinnerService.getDinners();
   }
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
+  }  
 
   // toggleCategory(category: Category) {
     
@@ -59,4 +76,5 @@ export class ProgressionComponent implements OnInit {
   deleteFromMisc(miscFood: string) {
     this.miscFoods = this.miscFoods.filter(x => x !== miscFood)
   }
+
 }

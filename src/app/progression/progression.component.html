@@ -1,29 +1,41 @@
 <mat-horizontal-stepper #stepper (keydown.enter)="$event.preventDefault()">
-  <mat-step [stepControl]="dinnersFormGroup" errorMessage="Woche vervollständigen!">
+  <mat-step>
     <ng-template matStepLabel> Abendessen </ng-template>
     <section>
       <!-- <mat-checkbox [(ngModel)]="" (click)="toggleCategory(0)" [checked]="true"> Süß </mat-checkbox>
       <mat-checkbox (click)="toggleCategory(1)" [checked]="true"> Fleisch </mat-checkbox>
       <mat-checkbox (click)="toggleCategory(2)" [checked]="true"> Fisch </mat-checkbox> -->
     </section>
-    <form class="dinners-form" [formGroup]="dinnersFormGroup">
-      <mat-form-field *ngFor="let day of WEEKDAYS" appearance="fill">
-        <mat-label> {{day}} </mat-label>
-        <mat-select [formControlName]="day">
-          <mat-option *ngFor="let dinner of dinners" [value]="dinner.id" required>
-            {{dinner.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <div>
-        <button mat-raised-button matStepperNext> Next &gt;&gt; </button>
-        <!-- <button mat-button (click)="info()">info</button> -->
+    <div class="example-container">
+      <h2>To do</h2>
+      <div
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="todo"
+        [cdkDropListConnectedTo]="[doneList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
       </div>
-    </form>
+    </div>
+    <div class="example-container">
+      <h2>Done</h2>    
+      <div
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="done"
+        [cdkDropListConnectedTo]="[todoList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+      </div>
+    </div>
+    <button mat-raised-button matStepperNext> Next &gt;&gt; </button>
+    <!-- <button mat-button (click)="info()">info</button> -->
   </mat-step>
-  <mat-step [stepControl]="miscFormGroup">
+  <mat-step>
     <ng-template matStepLabel> Sonstiges </ng-template>
-    <form [formGroup]="miscFormGroup">
+    <form>
       <mat-form-field appearance="fill">
         <mat-label> Weiteres hinzufügen </mat-label>
         <input matInput placeholder="Apfel x3, Bananen x5, Brot, Klopapier, ..." autocomplete="off" (keyup.enter)="addToMisc($event)">
@@ -42,9 +54,9 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel> Review </ng-template>
-    <p>
+    <!-- <p>
       {{ this.dinnersFormGroup.value | json }}
-    </p>
+    </p> -->
     <p>
       {{ this.miscFoods | json }}
     </p>
