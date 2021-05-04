@@ -12,6 +12,12 @@
             <button mat-mini-fab [style.color]="'grey'" (click)="toggleCategory(Category.vegetarian, 'vegiFilter')" id="vegiFilter">
               <mat-icon matTooltip="Vegetarisch" matTooltipPosition="right"> grass </mat-icon>
             </button>
+            <button mat-mini-fab [style.color]="'grey'" (click)="toggleCategory(Category.rice, 'riceFilter')" id="riceFilter">
+              <mat-icon matTooltip="Reis" matTooltipPosition="right"> rice_bowl </mat-icon>
+            </button>
+            <button mat-mini-fab [style.color]="'grey'" (click)="toggleCategory(Category.noodles, 'noodlesFilter')" id="noodlesFilter">
+              <mat-icon matTooltip="Nudeln" matTooltipPosition="right"> dinner_dining </mat-icon>
+            </button>
             <button mat-mini-fab [style.color]="'grey'" (click)="toggleCategory(Category.meat, 'meatFilter')" id="meatFilter">
               <mat-icon matTooltip="Fleisch" matTooltipPosition="right"> pets </mat-icon>
             </button>

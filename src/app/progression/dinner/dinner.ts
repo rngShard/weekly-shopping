@@ -1,6 +1,8 @@
 export enum Category {
   sweet,
   vegetarian,
+  rice,
+  noodles,
   meat,
   fish,
   fastfood,
