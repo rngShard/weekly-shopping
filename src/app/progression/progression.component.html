@@ -45,7 +45,10 @@
             class="item-list item-list-large"
             (cdkDropListDropped)="drop($event)">
             <ng-container *ngFor="let dinner of availDinners">
-              <div *ngIf="dinnerApplicable(dinner)" class="item-box" cdkDrag>
+              <div cdkDrag class="item-box" *ngIf="dinnerApplicable(dinner)">
+                {{ dinner.name }}
+              </div>
+              <div cdkDrag class="item-box-collapsed" *ngIf="!dinnerApplicable(dinner)">
                 {{ dinner.name }}
               </div>
             </ng-container>

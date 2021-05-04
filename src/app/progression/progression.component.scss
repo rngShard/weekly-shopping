@@ -22,7 +22,7 @@ mat-grid-list {
   border-radius: 4px;
   display: block;
 
-  .item-box {
+  .item-box, .item-box-collapsed {
     padding: 20px 10px;
     border-bottom: solid 1px #ccc;
     color: rgba(0, 0, 0, 0.87);
@@ -34,6 +34,11 @@ mat-grid-list {
     cursor: move;
     background: white;
     font-size: 14px;
+  }  
+  .item-box-collapsed {
+    padding: 0;
+    font: 10 2px/3px Roboto, "Helvetica Neue", sans-serif !important;
+    font-size: 1px;
   }
   .item-box:last-child {
     border: none;
