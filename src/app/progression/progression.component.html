@@ -2,14 +2,35 @@
   <mat-step>
     <ng-template matStepLabel> Abendessen </ng-template>
 
-    <section>
-      <!-- <mat-checkbox [(ngModel)]="" (click)="toggleCategory(0)" [checked]="true"> Süß </mat-checkbox>
-      <mat-checkbox (click)="toggleCategory(1)" [checked]="true"> Fleisch </mat-checkbox>
-      <mat-checkbox (click)="toggleCategory(2)" [checked]="true"> Fisch </mat-checkbox> -->
-    </section>
     <div class="grid-container">
       <mat-grid-list cols="2" rowHeight="100px">
         <mat-grid-tile colspan="1" rowspan="7">
+          <div class="toggleBtnBar">
+            <button mat-mini-fab [style.color]="'grey'" (click)="toggleCategory(Category.sweet, 'sweetFilter')" id="sweetFilter">
+              <mat-icon matTooltip="Süß" matTooltipPosition="right"> storefront </mat-icon>
+            </button>
+            <button mat-mini-fab [style.color]="'grey'" (click)="toggleCategory(Category.vegetarian, 'vegiFilter')" id="vegiFilter">
+              <mat-icon matTooltip="Vegetarisch" matTooltipPosition="right"> grass </mat-icon>
+            </button>
+            <button mat-mini-fab [style.color]="'grey'" (click)="toggleCategory(Category.meat, 'meatFilter')" id="meatFilter">
+              <mat-icon matTooltip="Fleisch" matTooltipPosition="right"> pets </mat-icon>
+            </button>
+            <button mat-mini-fab [style.color]="'grey'" (click)="toggleCategory(Category.fish, 'fishFilter')" id="fishFilter">
+              <mat-icon matTooltip="Fisch" matTooltipPosition="right"> water </mat-icon>
+            </button>
+            <button mat-mini-fab [style.color]="'grey'" (click)="toggleCategory(Category.fastfood, 'fastfoodFilter')" id="fastfoodFilter">
+              <mat-icon matTooltip="Fastfood" matTooltipPosition="right"> fastfood </mat-icon>
+            </button>
+            <button mat-mini-fab [style.color]="'grey'" (click)="toggleCategory(Category.external, 'extFilter')" id="extFilter">
+              <mat-icon matTooltip="(auswärts essen)" matTooltipPosition="right"> food_bank </mat-icon>
+            </button>
+            <!-- <button mat-mini-fab [style.color]="'grey'" (click)="toggleCategory(?, '?')" id="?">
+              <mat-icon matTooltip="?" matTooltipPosition="right"> spa </mat-icon>
+            </button> -->
+            <!-- <button mat-mini-fab [style.color]="'grey'" (click)="toggleCategory(?, '?')" id="?">
+              <mat-icon matTooltip="?" matTooltipPosition="right"> emoji_food_beverage </mat-icon>
+            </button> -->
+          </div>
           <div
             cdkDropList
             #availDinnersDL="cdkDropList"
@@ -17,9 +38,11 @@
             [cdkDropListConnectedTo]="[DL0, DL1, DL2, DL3, DL4, DL5, DL6]"
             class="item-list item-list-large"
             (cdkDropListDropped)="drop($event)">
-            <div class="item-box" *ngFor="let dinner of availDinners" cdkDrag>
-              {{ dinner.name }}
-            </div>
+            <ng-container *ngFor="let dinner of availDinners">
+              <div *ngIf="dinnerApplicable(dinner)" class="item-box" cdkDrag>
+                {{ dinner.name }}
+              </div>
+            </ng-container>
           </div>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" rowspan="1">

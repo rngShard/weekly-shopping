@@ -23,7 +23,6 @@ mat-grid-list {
   display: block;
 
   .item-box {
-    
     padding: 20px 10px;
     border-bottom: solid 1px #ccc;
     color: rgba(0, 0, 0, 0.87);
@@ -42,6 +41,15 @@ mat-grid-list {
 }
 .item-list.cdk-drop-list-dragging .item-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.toggleBtnBar {
+  margin-right: 1em;
+  display: flex;
+  flex-direction: column;
+  button {
+    margin: .5em 0;
+  }
 }
 
 form, .grid-container {

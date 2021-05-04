@@ -21,16 +21,18 @@ export enum Weekdays {
 })
 export class ProgressionComponent implements OnInit {
   public Weekdays = Weekdays
+  public Category = Category;
   availDinners: Dinner[];
   
+  dinnerCategoryFilter: Category[];
   selDinners: Dinner[][];
   miscFoods: string[];
 
   constructor(
     private dinnerService: DinnerService
   ) {
-    // for (const val of enumKeys(Weekdays)) { console.log(Weekdays[val]) }
     this.availDinners = [];
+    this.dinnerCategoryFilter = [];
     this.selDinners = [ [], [], [], [], [], [], [] ];
     this.miscFoods = [];
   }
@@ -48,11 +50,23 @@ export class ProgressionComponent implements OnInit {
                         event.previousIndex,
                         event.currentIndex);
     }
-  }  
+  }
 
-  // toggleCategory(category: Category) {
-    
-  // }
+  dinnerApplicable(dinner: Dinner) {
+    return this.dinnerCategoryFilter.every(cat => dinner.categories.includes(cat));
+  }
+
+  toggleCategory(cat: Category, filterElemId: string) {
+    if (!this.dinnerCategoryFilter.includes(cat)) {
+      this.dinnerCategoryFilter.push(cat);
+      (document.querySelector(`#${filterElemId}`) as HTMLElement).style.color = 'blue';
+    } else {
+      let idx = this.dinnerCategoryFilter.indexOf(cat);
+      this.dinnerCategoryFilter.splice(idx, 1);
+      (document.querySelector(`#${filterElemId}`) as HTMLElement).style.color = 'grey';
+    }
+    console.log(this.dinnerCategoryFilter);
+  }
 
   addToMisc($event: any) {
     this.miscFoods.push($event.target.value);
