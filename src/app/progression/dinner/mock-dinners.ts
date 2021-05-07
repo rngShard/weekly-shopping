@@ -5,7 +5,7 @@ export const DINNERS: Dinner[] = [
     { id: -4, name: "Reste", ingrediences: [], categories: [Category.misc] },
     { id: -3, name: "Reste", ingrediences: [], categories: [Category.misc] },
     { id: -2, name: "Auswärts Essen", ingrediences: [], categories: [Category.misc] },
-    { id: -1, name: "Auswärts Essen", ingrediences: [], categories: [Category.sweet] },
+    { id: -1, name: "Auswärts Essen", ingrediences: [], categories: [Category.misc] },
     { id: 0, name: "Kaiserschmarrn", ingrediences: ["Eier", "Butter", "Milch", "Mehl", "Zucker"], categories: [Category.sweet] },
     { id: 1, name: "Kartoffelpuffer", ingrediences: ["Kartoffeln", "Eier"], categories: [Category.sweet, Category.potatoes] },
     { id: 2, name: "Dampfnudeln", ingrediences: ["Butter", "Eier"], categories: [Category.sweet] },

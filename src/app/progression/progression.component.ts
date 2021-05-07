@@ -27,6 +27,7 @@ export class ProgressionComponent implements OnInit {
   dinnerCategoryFilter: Category[];
   selDinners: Dinner[][];
   miscFoods: string[];
+  shoppingItems: string[];
 
   constructor(
     private dinnerService: DinnerService
@@ -35,6 +36,7 @@ export class ProgressionComponent implements OnInit {
     this.dinnerCategoryFilter = [];
     this.selDinners = [ [], [], [], [], [], [], [] ];
     this.miscFoods = [];
+    this.shoppingItems = [];
   }
 
   ngOnInit(): void {
@@ -73,7 +75,22 @@ export class ProgressionComponent implements OnInit {
     $event.target.value = "";
   }
   deleteFromMisc(miscFood: string) {
-    this.miscFoods = this.miscFoods.filter(x => x !== miscFood)
+    this.miscFoods = this.miscFoods.filter(x => x !== miscFood);
+  }
+
+  updateShoppingList(): void {
+    this.shoppingItems = [];
+    let thiz = this;
+
+    this.selDinners.forEach(function(dinners: Dinner[]) {
+      let dinner = dinners[0];
+      dinner.ingrediences.forEach(function(ingr: string) {
+        thiz.shoppingItems.push(ingr);
+      });
+    });
+    this.miscFoods.forEach(function(miscFood: string) {
+      thiz.shoppingItems.push(miscFood);
+    });
   }
 
   assembleBgImageUrl(str: string) {

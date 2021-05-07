@@ -136,12 +136,11 @@
   <mat-step>
     <ng-template matStepLabel> Review </ng-template>
 
-    <!-- <p>
-      {{ this.dinnersFormGroup.value | json }}
-    </p> -->
-    <p>
-      {{ this.miscFoods | json }}
-    </p>
+    <h4>Einkaufsliste:</h4>
+    <ul>
+      <li *ngFor="let item of shoppingItems"> {{ item }} </li>
+    </ul>
+    <button mat-raised-button (click)="updateShoppingList()"> Update List </button>
     
     <!-- <button mat-raised-button matStepperPrevious>Back</button>
     <button mat-raised-button (click)="stepper.reset()">Reset</button> -->
