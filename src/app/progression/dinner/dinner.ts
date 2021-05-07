@@ -1,12 +1,14 @@
 export enum Category {
   sweet,
-  vegetarian,
+  vegetables,
+  bread,
+  potatoes,
   rice,
   noodles,
   meat,
   fish,
   fastfood,
-  external
+  misc
 }
 
 export interface Dinner {
