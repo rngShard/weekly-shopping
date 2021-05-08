@@ -78,21 +78,6 @@ export class ProgressionComponent implements OnInit {
     this.miscFoods = this.miscFoods.filter(x => x !== miscFood);
   }
 
-  updateShoppingList(): void {
-    this.shoppingItems = [];
-    let thiz = this;
-
-    this.selDinners.forEach(function(dinners: Dinner[]) {
-      let dinner = dinners[0];
-      dinner.ingrediences.forEach(function(ingr: string) {
-        thiz.shoppingItems.push(ingr);
-      });
-    });
-    this.miscFoods.forEach(function(miscFood: string) {
-      thiz.shoppingItems.push(miscFood);
-    });
-  }
-
   assembleBgImageUrl(str: string) {
     return `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' height='100%' width='100%'><text x='20' y='35' fill='grey' font-size='20'> ${str} </text></svg>")`;
   }

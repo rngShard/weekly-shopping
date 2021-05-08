@@ -137,10 +137,12 @@
     <ng-template matStepLabel> Review </ng-template>
 
     <h4>Einkaufsliste:</h4>
-    <ul>
-      <li *ngFor="let item of shoppingItems"> {{ item }} </li>
-    </ul>
-    <button mat-raised-button (click)="updateShoppingList()"> Update List </button>
+    <p>
+      {{ selDinners | json }}
+    </p>
+    <p>
+      {{ miscFoods | json }}
+    </p>
     
     <!-- <button mat-raised-button matStepperPrevious>Back</button>
     <button mat-raised-button (click)="stepper.reset()">Reset</button> -->
