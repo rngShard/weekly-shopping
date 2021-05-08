@@ -136,14 +136,24 @@
   <mat-step>
     <ng-template matStepLabel> Review </ng-template>
 
-    <h4>Einkaufsliste:</h4>
-    <p>
-      {{ selDinners | json }}
-    </p>
-    <p>
-      {{ miscFoods | json }}
-    </p>
-    
+    <mat-list>
+      <!-- <mat-divider></mat-divider> -->
+      <div mat-subheader> Einkaufsliste - Abendessen </div>
+      <mat-list-item *ngFor="let dinners of selDinners; let i = index" [attr.data-index]="i">
+        <!-- <ng-container *ngIf="dinners[0] !== undefined"> -->
+          <mat-icon mat-list-icon> shopping_cart </mat-icon>
+          <div mat-line> {{dinners[0]?.ingrediences | json}} </div>
+          <div mat-line> {{Weekdays[i]}}: {{dinners[0]?.name}} </div>          
+        <!-- </ng-container> -->
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <div mat-subheader> Einkaufsliste - Sonstiges </div>
+      <mat-list-item *ngFor="let food of miscFoods">
+        <mat-icon mat-list-icon> shopping_cart</mat-icon>
+        <div mat-line> {{food}} </div>
+      </mat-list-item>
+    </mat-list>
+
     <!-- <button mat-raised-button matStepperPrevious>Back</button>
     <button mat-raised-button (click)="stepper.reset()">Reset</button> -->
   </mat-step>
