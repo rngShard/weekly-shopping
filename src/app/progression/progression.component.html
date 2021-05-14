@@ -61,51 +61,51 @@
           </div>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" rowspan="1">
+          <div class="weekdayDeclare"> Mo </div>
           <div cdkDropList class="item-list" (cdkDropListDropped)="drop($event)"
-            #DL0="cdkDropList"[cdkDropListData]="selDinners[0]" [cdkDropListConnectedTo]="[availDinnersDL, DL1, DL2, DL3, DL4, DL5, DL6]"
-            [style.background-image]="assembleBgImageUrl(Weekdays[0])">
+            #DL0="cdkDropList"[cdkDropListData]="selDinners[0]" [cdkDropListConnectedTo]="[availDinnersDL, DL1, DL2, DL3, DL4, DL5, DL6]">
             <div class="item-box" *ngFor="let dinner of selDinners[0]" cdkDrag> {{ dinner.name }} </div>
           </div>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" rowspan="1">
+          <div class="weekdayDeclare"> Di </div>
           <div cdkDropList class="item-list" (cdkDropListDropped)="drop($event)"
-            #DL1="cdkDropList" [cdkDropListData]="selDinners[1]" [cdkDropListConnectedTo]="[availDinnersDL, DL0, DL2, DL3, DL4, DL5, DL6]"
-            [style.background-image]="assembleBgImageUrl(Weekdays[1])">
+            #DL1="cdkDropList" [cdkDropListData]="selDinners[1]" [cdkDropListConnectedTo]="[availDinnersDL, DL0, DL2, DL3, DL4, DL5, DL6]">
             <div class="item-box" *ngFor="let dinner of selDinners[1]" cdkDrag> {{ dinner.name }} </div>
           </div>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" rowspan="1">
+          <div class="weekdayDeclare"> Mi </div>
           <div cdkDropList class="item-list" (cdkDropListDropped)="drop($event)"
-            #DL2="cdkDropList" [cdkDropListData]="selDinners[2]" [cdkDropListConnectedTo]="[availDinnersDL, DL0, DL1, DL3, DL4, DL5, DL6]"
-            [style.background-image]="assembleBgImageUrl(Weekdays[2])">
+            #DL2="cdkDropList" [cdkDropListData]="selDinners[2]" [cdkDropListConnectedTo]="[availDinnersDL, DL0, DL1, DL3, DL4, DL5, DL6]">
             <div class="item-box" *ngFor="let dinner of selDinners[2]" cdkDrag> {{ dinner.name }} </div>
           </div>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" rowspan="1">
+          <div class="weekdayDeclare"> Do </div>
           <div cdkDropList class="item-list" (cdkDropListDropped)="drop($event)"
-            #DL3="cdkDropList" [cdkDropListData]="selDinners[3]" [cdkDropListConnectedTo]="[availDinnersDL, DL0, DL1, DL2, DL4, DL5, DL6]"
-            [style.background-image]="assembleBgImageUrl(Weekdays[3])">
+            #DL3="cdkDropList" [cdkDropListData]="selDinners[3]" [cdkDropListConnectedTo]="[availDinnersDL, DL0, DL1, DL2, DL4, DL5, DL6]">
             <div class="item-box" *ngFor="let dinner of selDinners[3]" cdkDrag> {{ dinner.name }} </div>
           </div>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" rowspan="1">
+          <div class="weekdayDeclare"> Fr </div>
           <div cdkDropList class="item-list" (cdkDropListDropped)="drop($event)"
-            #DL4="cdkDropList" [cdkDropListData]="selDinners[4]" [cdkDropListConnectedTo]="[availDinnersDL, DL0, DL1, DL2, DL3, DL5, DL6]"
-            [style.background-image]="assembleBgImageUrl(Weekdays[4])">
+            #DL4="cdkDropList" [cdkDropListData]="selDinners[4]" [cdkDropListConnectedTo]="[availDinnersDL, DL0, DL1, DL2, DL3, DL5, DL6]">
             <div class="item-box" *ngFor="let dinner of selDinners[4]" cdkDrag> {{ dinner.name }} </div>
           </div>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" rowspan="1">
+          <div class="weekdayDeclare"> Sa </div>
           <div cdkDropList class="item-list" (cdkDropListDropped)="drop($event)"
-            #DL5="cdkDropList" [cdkDropListData]="selDinners[5]" [cdkDropListConnectedTo]="[availDinnersDL, DL0, DL1, DL2, DL3, DL4, DL6]"
-            [style.background-image]="assembleBgImageUrl(Weekdays[5])">
+            #DL5="cdkDropList" [cdkDropListData]="selDinners[5]" [cdkDropListConnectedTo]="[availDinnersDL, DL0, DL1, DL2, DL3, DL4, DL6]">
             <div class="item-box" *ngFor="let dinner of selDinners[5]" cdkDrag> {{ dinner.name }} </div>
           </div>
         </mat-grid-tile>
         <mat-grid-tile colspan="1" rowspan="1">
+          <div class="weekdayDeclare"> So </div>
           <div cdkDropList class="item-list" (cdkDropListDropped)="drop($event)"
-            #DL6="cdkDropList" [cdkDropListData]="selDinners[6]" [cdkDropListConnectedTo]="[availDinnersDL, DL0, DL1, DL2, DL3, DL4, DL5]"
-            [style.background-image]="assembleBgImageUrl(Weekdays[6])">
+            #DL6="cdkDropList" [cdkDropListData]="selDinners[6]" [cdkDropListConnectedTo]="[availDinnersDL, DL0, DL1, DL2, DL3, DL4, DL5]">
             <div class="item-box" *ngFor="let dinner of selDinners[6]" cdkDrag> {{ dinner.name }} </div>
           </div>
         </mat-grid-tile>
@@ -134,23 +134,28 @@
     <button mat-raised-button matStepperNext> Next &gt;&gt; </button> -->
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel> Review </ng-template>
+    <ng-template matStepLabel> Einkaufsliste </ng-template>
 
     <mat-list>
-      <!-- <mat-divider></mat-divider> -->
       <div mat-subheader> Einkaufsliste - Abendessen </div>
       <mat-list-item *ngFor="let dinners of selDinners; let i = index" [attr.data-index]="i">
-        <!-- <ng-container *ngIf="dinners[0] !== undefined"> -->
-          <mat-icon mat-list-icon> shopping_cart </mat-icon>
-          <div mat-line> {{dinners[0]?.ingrediences | json}} </div>
-          <div mat-line> {{Weekdays[i]}}: {{dinners[0]?.name}} </div>          
-        <!-- </ng-container> -->
+        <mat-icon mat-list-icon> shopping_cart </mat-icon>
+        <div mat-line>
+          <ng-container *ngFor="let ingr of dinners[0]?.ingrediences">
+            <mat-checkbox> </mat-checkbox>
+            {{ingr}}
+          </ng-container>
+        </div>
+        <div mat-line> {{Weekdays[i]}}: {{dinners[0]?.name}} </div>
       </mat-list-item>
       <mat-divider></mat-divider>
       <div mat-subheader> Einkaufsliste - Sonstiges </div>
       <mat-list-item *ngFor="let food of miscFoods">
         <mat-icon mat-list-icon> shopping_cart</mat-icon>
-        <div mat-line> {{food}} </div>
+        <div mat-line>  
+          <mat-checkbox> </mat-checkbox>
+          {{food}}
+        </div>
       </mat-list-item>
     </mat-list>
 
