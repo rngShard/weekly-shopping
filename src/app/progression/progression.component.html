@@ -141,8 +141,10 @@
       <mat-list-item *ngFor="let dinners of selDinners; let i = index" [attr.data-index]="i">
         <mat-icon mat-list-icon> shopping_cart </mat-icon>
         <div mat-line>
-          <mat-checkbox> </mat-checkbox>
-          {{dinners[0]?.ingrediences | json}}
+          <ng-container *ngFor="let ingr of dinners[0]?.ingrediences">
+            <mat-checkbox> </mat-checkbox>
+            {{ingr}}
+          </ng-container>
         </div>
         <div mat-line> {{Weekdays[i]}}: {{dinners[0]?.name}} </div>
       </mat-list-item>
