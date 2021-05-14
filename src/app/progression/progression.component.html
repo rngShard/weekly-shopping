@@ -134,23 +134,26 @@
     <button mat-raised-button matStepperNext> Next &gt;&gt; </button> -->
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel> Review </ng-template>
+    <ng-template matStepLabel> Einkaufsliste </ng-template>
 
     <mat-list>
-      <!-- <mat-divider></mat-divider> -->
       <div mat-subheader> Einkaufsliste - Abendessen </div>
       <mat-list-item *ngFor="let dinners of selDinners; let i = index" [attr.data-index]="i">
-        <!-- <ng-container *ngIf="dinners[0] !== undefined"> -->
-          <mat-icon mat-list-icon> shopping_cart </mat-icon>
-          <div mat-line> {{dinners[0]?.ingrediences | json}} </div>
-          <div mat-line> {{Weekdays[i]}}: {{dinners[0]?.name}} </div>          
-        <!-- </ng-container> -->
+        <mat-icon mat-list-icon> shopping_cart </mat-icon>
+        <div mat-line>
+          <mat-checkbox> </mat-checkbox>
+          {{dinners[0]?.ingrediences | json}}
+        </div>
+        <div mat-line> {{Weekdays[i]}}: {{dinners[0]?.name}} </div>
       </mat-list-item>
       <mat-divider></mat-divider>
       <div mat-subheader> Einkaufsliste - Sonstiges </div>
       <mat-list-item *ngFor="let food of miscFoods">
         <mat-icon mat-list-icon> shopping_cart</mat-icon>
-        <div mat-line> {{food}} </div>
+        <div mat-line>  
+          <mat-checkbox> </mat-checkbox>
+          {{food}}
+        </div>
       </mat-list-item>
     </mat-list>
 
