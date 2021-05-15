@@ -49,5 +49,8 @@ export const DINNERS: Dinner[] = [
     { id: 44, name: "Spinat, Kartoffeln & Ei", ingrediences: ["Spinat", "Kartoffeln", "Ei"], categories: [Category.vegetables, Category.potatoes] },
     { id: 45, name: "Hamburger", ingrediences: ["Hackfleisch", "Saure Gurken", "Tomaten", "Salat", "Gurke", "Käse"], categories: [Category.meat, Category.fastfood] },
     { id: 46, name: "Kürbiscremesuppe", ingrediences: ["Kürbis", "Kartoffeln", "Karotten", "Zwiebeln", "Sahne"], categories: [Category.vegetables] },
-    { id: 47, name: "(Oli's) Nudeln mit Erbsen & Creme Fraiche", ingrediences: ["Nudeln", "Erbsen", "Creme Fraiche", "Zitrone"], categories: [Category.noodles, Category.vegetables] }
+    { id: 47, name: "(Oli's) Nudeln mit Erbsen & Creme Fraiche", ingrediences: ["Nudeln", "Erbsen", "Creme Fraiche", "Zitrone"], categories: [Category.noodles, Category.vegetables] },
+    { id: 48, name: "Sushi", ingrediences: ["Lachs", "Thunfisch", "Gurke", "Karotte", "Mais", "Pilze", "Fleisch"], categories: [Category.rice, Category.fish, Category.vegetables] },
+    { id: 49, name: "Onigiri", ingrediences: ["(Spez.)"], categories: [Category.rice, Category.fish, Category.vegetables] },
+    { id: 50, name: "Lachsnudeln", ingrediences: ["Lachs", "Nudeln", "Sahne"], categories: [Category.noodles, Category.fish] }
 ]
