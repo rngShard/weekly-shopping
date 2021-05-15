@@ -33,10 +33,9 @@ export class VEvent {
     let vEventStr = `BEGIN:VEVENT
 SUMMARY:${this.summary}
 DTSTART:${this.parseDate(this.start)}
-DTEND:${this.parseDate(this.end)}
-`;
+DTEND:${this.parseDate(this.end)}`;
     if (this.location) { vEventStr += `\nLOCATION:${this.location}` }
-    if (this.description) { vEventStr += `\DESCRIPTION:${this.description}` }
+    if (this.description) { vEventStr += `\nDESCRIPTION:${this.description}` }
     vEventStr += "\nEND:VEVENT";
     return vEventStr;
   }
@@ -74,14 +73,3 @@ CALSCALE:GREGORIAN`;
     return vCalendarStr;
   }
 }
-
-
-  // export const download = (filename: any, text: any) => {
-  //   const element = document.createElement('a')
-  //   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text))
-  //   element.setAttribute('download', filename)
-  //   element.setAttribute('target', '_blank')
-  //   element.style.display = 'none'
-  //   element.click()
-  // }
-  
