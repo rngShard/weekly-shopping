@@ -3,6 +3,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 
 import { DinnerService } from './dinner/dinner.service';
 import { Category, Dinner } from './dinner/dinner';
+import { VEvent, VCalendar } from './ical-event';
 
 export enum Weekdays {
   "Montag",
@@ -77,4 +78,44 @@ export class ProgressionComponent implements OnInit {
   deleteFromMisc(miscFood: string) {
     this.miscFoods = this.miscFoods.filter(x => x !== miscFood);
   }
+
+  downloadICal() {
+    let vCal = new VCalendar();
+
+    let nxtMonday = getNextDayOfWeek(1);
+    for (let {idx, selDinners} of this.selDinners.map((selDinners, idx) => ({idx, selDinners }))) {
+      if (selDinners.length > 0) {
+        let selDinner: Dinner = selDinners[0];
+        let event = new VEvent(
+          setTo19H(getNextDayOfWeek(idx+1, nxtMonday)),
+          setTo19H(getNextDayOfWeek(idx+1, nxtMonday), 30),
+          `Abendessen (${selDinner?.name})`,
+          `Zutaten: ${selDinner.ingrediences}`);
+        vCal.addVEvent(event);
+      }
+    }
+
+    download("Abendessen.ical", vCal.assembleICalCalendar());
+  }
+}
+
+function getNextDayOfWeek(dayOfWeek: number, specificDate?: Date): Date {
+  let date = specificDate ? specificDate : new Date();
+  var resultDate = new Date(date.getTime());
+  resultDate.setDate(date.getDate() + (7 + dayOfWeek - date.getDay()) % 7);
+  return resultDate;
+}
+function setTo19H(date: Date, min?: number): Date {
+  date.setHours(19);
+  date.setMinutes(min ? min : 0);
+  date.setSeconds(0);
+  return date;
+}
+function download(filename: any, text: any) {
+  const element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+  element.setAttribute('target', '_blank');
+  element.style.display = 'none';
+  element.click();
 }
