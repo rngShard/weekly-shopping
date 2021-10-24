@@ -4,6 +4,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
+    "site": "weekly-shopping",
     "public": "dist",
     "ignore": [
       "firebase.json",
